@@ -1,0 +1,61 @@
+<div style="background-image: url('../background.jpg'); background-size: cover; height: 100vh; width: 100vw;">
+	<div class="ui center aligned grid" ng-show="vm.showModal" style="height: 100vh; width: 100vw; padding: 0; margin: 0; color: dimgray; position: absolute; background: rgba(10, 10, 10, .75);">
+		<div class="row">
+			<div class="middle aligned column">
+				<div class="ui inverted icon header">
+					<i class="asterisk gray loading icon"></i> {{ vm.modalText }}
+				</div>
+				<div class="actions">
+					<div ng-click="vm.modalText = 'Y NOT?'" ng-hide="vm.modalText === 'Y NOT?'" class="ui purple basic cancel inverted button">
+						<i class="remove icon"></i> No
+					</div>
+					<div class="ui green ok inverted button" ng-click="vm.showModal = !vm.showModal">
+						<i class="checkmark icon"></i> Yes
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui center aligned grid" ng-hide="vm.showModal" style="height: 70vh; width: 100vw; padding: 0; margin: 0;">
+		<div class="row" style="height: 7em; font-size: 3em;">
+			<div class="ui corner labeled input">
+				<input type="text" ng-model="message">
+				<div class="ui corner label">
+					<i class="asterisk icon"></i>
+				</div>
+			</div>
+		</div>
+		<div class="two column row" style="-webkit-text-stroke: 1px black; color: white; font-size: 3em;">
+			<div class="middle aligned right aligned column">
+				<p>Binding: </p>
+			</div>
+			<div class="middle aligned left aligned column">
+				<p> {{ message }}</p>
+			</div>
+		</div>
+		<div class="two column row" style="-webkit-text-stroke: 1px black; color: white; font-size: 3em;">
+			<div class="middle aligned right aligned column">
+				<p>Concat: </p>
+			</div>
+			<div class="middle aligned left aligned column">
+				<p> {{ message + message }}</p>
+			</div>
+		</div>
+		<div class="two column row" style="-webkit-text-stroke: 1px black; color: white; font-size: 3em;">
+			<div class="middle aligned right aligned column">
+				<p>Math: </p>
+			</div>
+			<div class="middle aligned left aligned column">
+				<p> {{ vm.getMessageAdd(message); }}</p>
+			</div>
+		</div>
+		<div class="two column row" style="-webkit-text-stroke: 1px black; color: white; font-size: 3em;">
+			<div class="middle aligned right aligned column">
+				<p>Is hello?: </p>
+			</div>
+			<div class="middle aligned left aligned column">
+				<p> {{ message === 'hello' }}</p>
+			</div>
+		</div>
+	</div>
+</div>
