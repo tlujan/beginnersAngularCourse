@@ -1,7 +1,18 @@
 (function (angular) {
 	angular
 		.module("application")
-		.controller("welcomeController", ["$route", function($route) {
+		.controller("nameOfTheController", function(dependency) {
+			console.log(dependency);
+		})
+		.controller("welcomeController", function($route, appSettings, testSettings, nerdyAlert) {
+			console.log(appSettings);
+			console.log(testSettings);
+			console.log(nerdyAlert.serviceProperty);
+
+			this.service = nerdyAlert;
+
+			this.applicationLabel = appSettings.title + " v." + appSettings.version;
+
 			this.simpleRoutes = linkToRoutes();
 
 			function linkToRoutes() {
@@ -25,5 +36,5 @@
 
 				return returnSimpleRoutes;
 			}
-		}]);
+		});
 } (window.angular))

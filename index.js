@@ -2,10 +2,16 @@
 	let applicationGlobalSettings = {
 		title   : "WelcomeApp",
 		version : 0.99
-	}
+	};
+
+	let testSettings = {
+		test : "RAWR",
+	};
 
 	angular
 		.module("application", ["ngRoute"])
+		.constant("appSettings", applicationGlobalSettings)
+		.constant("testSettings", testSettings)
 		.config(
 			function ($locationProvider, $routeProvider) {
 				$locationProvider.html5Mode(true);
@@ -27,5 +33,4 @@
 						controllerAs: "vm"
 					});
 			})
-		.constant("applicationGlobalSettings", applicationGlobalSettings)
 } (window.angular))
