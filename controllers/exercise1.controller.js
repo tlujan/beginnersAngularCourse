@@ -1,18 +1,33 @@
 (function (angular) {
 	angular
 		.module("application")
-		.controller("exercise1Controller", function () {
+		.controller("exercise1Controller", function(nerdyAlert) {
 			// capturing controller scope here, used again in _getRandomColor
 			let vm = this;
 
 			// bindable publics
+			this.nerdyAlert = nerdyAlert;
+
 			this.title = "exercise title";
 
 			this.rollButtonText = "Roll Me";
 
 			this.lastObjectClickedText = null;
 
-			this.possibleColors = ["hotpink", "limegreen", "purple", "maroon", "dodgerblue"];
+			this.possibleColors = [
+				{
+					name: "Brown",
+					hex: "#A52A2A"
+				},
+				{
+					name: "Blue",
+					hex: "#0000FF"
+				},
+				{
+					name: "Gainsboro",
+					hex: "#DCDCDC"
+				}
+			];
 
 			this.controllerInitializedObject = {
 				name: "Object 1",
@@ -64,7 +79,8 @@
 
 				let randomColor = vm.possibleColors[Math.floor(Math.random() * vm.possibleColors.length)];
 
-				return randomColor;
+				// now that randomColor is actually an object, we return only the hex property we need
+				return randomColor.hex;
 			}
 		});
 } (window.angular))
