@@ -149,18 +149,33 @@
 			<div class="item">
 				<div class="content">
 					<div class="header">Constants</div>
+					Constants are objects that are assigned to a module in Angular.  Use constant("name", object).  This angular constant may now be
+					injected in any controller or service in the module.
 				</div>
 			</div>
 
 			<div class="item">
 				<div class="content">
 					<div class="header">Services</div>
+					Like constants, once attached to a module these may be injected anywhere.  They are singletons
+					(https://en.wikipedia.org/wiki/Singleton_pattern).  They are never reinitialized, so you can persist a service's state throughout
+					the lifespan of the application.
 				</div>
 			</div>
 
 			<div class="item">
 				<div class="content">
 					<div class="header">Dependency Injection</div>
+					Angular will inject the functionality of a service or the properties of a constant for you when you pass the name of these into
+					a controller function (or another service function).
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="content">
+					<div class="header">ngClass and ngStyle</div>
+					The Angular way to set UI styles, animations and swap classes dynamically.  Bind to controller / service properties directly or use
+					truthy expressions to determine which classes get applied to an element in real time.
 				</div>
 			</div>
 
