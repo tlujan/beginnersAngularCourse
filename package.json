@@ -9,6 +9,6 @@
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
     "superstatic": "^4.0.0",
-	 "semantic-ui": "^2.2.0"
+    "semantic-ui": "^2.2.0"
   }
 }

@@ -1,13 +1,11 @@
 (function (angular) {
 	angular
 		.module("application")
-		.controller("exercise1Controller", function(nerdyAlert) {
+		.controller("exercise1Controller", function() {
 			// capturing controller scope here, used again in _getRandomColor
 			let vm = this;
 
 			// bindable publics
-			this.nerdyAlert = nerdyAlert;
-
 			this.title = "exercise title";
 
 			this.rollButtonText = "Roll Me";
