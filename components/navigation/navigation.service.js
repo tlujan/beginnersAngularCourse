@@ -4,7 +4,7 @@
 	angular
 		.module("application")
 
-		.factory("routeList", ["$route", function ($route) {
+		.factory("navigationService", ["$route", function ($route) {
 			return {
 				fetchRoutesPairs
 			};
@@ -19,7 +19,7 @@
 					}
 
 					let friendlyRouteObject = {
-						url  : r.originalPath,										// our url will be what Angular tracks as "originalPath"
+						url  : r.originalPath || '/',								// our url will be what Angular tracks as "originalPath"
 						name : r.controller.replace(/controller/gi, "")		// use JavaScript replace() to trim controller path to just the name
 					};
 

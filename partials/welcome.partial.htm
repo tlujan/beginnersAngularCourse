@@ -10,28 +10,16 @@
 	}
 </style>
 
+<button ng-click="vm.login(username, 'bob123')">login</button>
+<input type="text" ng-model="username"></input>
+
 <div class="ui container">
 	<div class="ui segments">
 		<div class="ui segment paddingtop">
-			<h1 class="ui header"><i class="grey google icon" aria-hidden="true"></i>  {{ vm.applicationLabel }}</h1>
+			<h1 class="ui header"><i class="grey google icon" aria-hidden="true"></i>  {{ vm.applicationLabel }} User: {{ vm.loggedInUser().username }}</h1>
 		</div>
-		<div class="ui segments">
-			<div class="ui segment">
-				<h3 class="ui header">Application routes: </h3>
-			</div>
-			<div class="ui segment">
-				<div class="ui horizontal large list">
-					<div ng-repeat="r in vm.activeRoutes" class="item">
-						<div class="content">
-							<div class="header"><a ng-href="{{ r.url }}">{{ r.name }}</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<navigation></navigation>
 	</div>
-
-
 
 	<h3 class="ui block inverted header">
 		WEEK 1
