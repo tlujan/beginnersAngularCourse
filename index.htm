@@ -29,12 +29,17 @@
 	<script type="text/javascript" src="components/navigation/navigation.controller.js"></script>
 	<script type="text/javascript" src="components/navigation/navigation.js"></script>
 
+	<script type="text/javascript" src="components/homemadeModal/modal.controller.js"></script>
+	<script type="text/javascript" src="components/homemadeModal/modal.js"></script>
+
 	<!-- vendor CSS -->
 	<link href="semantic/dist/semantic.min.css" rel="stylesheet">
 </head>
 
 <body ng-app="application">
-	<div ng-view>Angular routing hasn't loaded or been configured properly...</div>
+	<homemade-modal>
+		<div ng-view>Angular routing hasn't loaded or been configured properly...</div>
+	</homemade-modal>
 </body>
 
 </html>
