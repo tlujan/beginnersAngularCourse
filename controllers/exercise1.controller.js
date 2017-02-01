@@ -1,9 +1,27 @@
 (function (angular) {
 	angular
 		.module("application")
-		.controller("exercise1Controller", function() {
+		.controller("exercise1Controller", function(modalService) {
 			// capturing controller scope here, used again in _getRandomColor
 			let vm = this;
+
+			debugger;
+
+			modalService.showPrompt(
+				"This is our first test",
+
+				{
+					text: "Show Alert",
+					callback: function() { alert("test"); close(); }
+				},
+
+				{
+					text: "Be Quiet",
+					callback: function() { close(); }
+				}
+			);
+
+			debugger;
 
 			// bindable publics
 			this.title = "exercise title";

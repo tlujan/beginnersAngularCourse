@@ -1,12 +1,28 @@
 <link rel="stylesheet" href="components/homemadeModal/modal.css" />
 
 <div>
-	<div class="modalContainer"> <!-- dimmer -->
+	{{ vm.modal.isPrompt }}
+	<div class="modalContainer" ng-show="vm.modal.isPrompt || vm.modal.isRegister || vm.modal.isLogin">
+		<!-- dimmer -->
 		<div class="ui center aligned grid">
 			<div class="row">
 				<div class="middle aligned column">
 					<!-- content in modal -->
-					<modal-prompt ng-show="vm.isPrompt"></modal-prompt>
+					<!--<modal-prompt ng-show="vm.isPrompt"></modal-prompt>-->
+
+					<div ng-show="vm.modal.isPrompt">
+						<div class="ui inverted icon header">
+							<i class="asterisk gray loading icon"></i> {{ vm.modal.message }}
+						</div>
+						<div class="actions">
+							<div class="ui purple basic cancel inverted button" tabindex="0">
+								<i class="remove icon"></i> {{ vm.modal.buttonObj1.text }}
+							</div>
+							<div class="ui green ok inverted button" tabindex="1">
+								<i class="checkmark icon"></i> {{ vm.modal.buttonObj2.text }}
+							</div>
+						</div>
+					</div>
 					<modal-login ng-show="vm.isLogin"></modal-login>
 					<modal-register ng-show="vm.isRegister"></modal-register>
 				</div>
@@ -14,5 +30,5 @@
 		</div>
 	</div>
 
-	<!--<ng-transclude></ng-transclude>-->
+	<ng-transclude></ng-transclude>
 </div>
