@@ -5,23 +5,19 @@
 			// capturing controller scope here, used again in _getRandomColor
 			let vm = this;
 
-			debugger;
-
 			modalService.showPrompt(
 				"This is our first test",
 
 				{
 					text: "Show Alert",
-					callback: function() { alert("test"); close(); }
+					callback: function() { alert("test"); }
 				},
 
 				{
-					text: "Be Quiet",
-					callback: function() { close(); }
+					text: "Be Quiet"
 				}
 			);
 
-			debugger;
 
 			// bindable publics
 			this.title = "exercise title";

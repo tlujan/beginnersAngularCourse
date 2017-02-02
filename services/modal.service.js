@@ -3,45 +3,44 @@
 		.module("application")
 		.factory("modalService", function() {
 			let modal = {
-				isLogin: false,
-				isRegistration: false,
-				isPrompt: false,
-			};
-
-			let modalDefault = {
-				isLogin: false,
-				isRegistration: false,
-				isPrompt: false,
+				isLogin        : false,
+				isRegistration : false,
+				isPrompt       : false
 			};
 
 			return {
 				modal,
 				showPrompt,
-				showPromptFunc,
 				close
 			};
 
-			function showPromptFunc() {
-				return model.isPrompt;
-			}
-
+			// set up our modal for prompt
 			function showPrompt(message, buttonObj1, buttonObj2) {
+				// validation
 				let errorString = "You didn't use me right";
 
-				if(!message || !buttonObj1 || typeof buttonObj1 !== 'object')
+				if (!message || !buttonObj1 || typeof buttonObj1 !== 'object')
 					throw new Error(errorString);
 
-				if(buttonObj2 && typeof buttonObj2 !== 'object')
+				if (buttonObj2 && typeof buttonObj2 !== 'object')
 					throw new Error(errorString);
 
-				modal.message = message;
-				modal.buttonObj1 = buttonObj1;
-				modal.buttonObj2 = buttonObj2;
-				modal.isPrompt = true;
+				// set our modal object properties
+				this.modal.message = message;
+				this.modal.buttonObj1 = buttonObj1;
+				this.modal.buttonObj2 = buttonObj2;
+				this.modal.isPrompt = true;
 			}
 
+			// set the modal object to a pristine state without reassignment
 			function close() {
-				modal = modalDefault;
+				delete modal.buttonObj1;
+				delete modal.buttonObj2;
+
+				modal.isLogin = false;
+				modal.isRegistration = false;
+				modal.isPrompt = false;
+				modal.message = null;
 			}
 		});
 } (window.angular))
