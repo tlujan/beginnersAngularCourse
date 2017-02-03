@@ -1,29 +1,14 @@
-<style type="text/css">
-	.spacedDiv {
-		border-bottom: solid thin black;
-		margin-bottom: 2em;
-		padding-bottom: 1em;
-	}
-
-	.spacedDiv:first-child {
-		margin-top: 4em;
-	}
-
-	.spacedDiv.noborder, .spacedDiv:last-child {
-		border-bottom: none;
-	}
-
-	.ui.horizontal.divider {
-		margin-top: 4em;
-		margin-bottom: 4em;
-	}
-</style>
-
-<navigation></navigation>
+<link href="/partials/exercise.css" rel="stylesheet">
 
 <div class="ui container">
+	<navigation></navigation>
+
 	<div class="ui horizontal divider">
-		Review Exercise
+		Review Exercise 1
+	</div>
+
+	<div class="spacedDiv">
+		<button ng-click="vm.showPrompt()" class="ui large button">Show Prompt Modal</button>
 	</div>
 
 	<div class="spacedDiv">
@@ -66,7 +51,7 @@
 		<b>{{ vm.controllerInitializedObject.clickCount }}</b>
 	</div>
 
-	<div class="spacedDiv noborder">
+	<div class="spacedDiv">
 		When this button is clicked, create a new object and add to controller's objectArray (give this object a name that makes sense and assign a random CSS color to the color property):
 		<br/><button class="ui large button" ng-click="vm.addNewObject()">Add New Object</button>
 	</div>

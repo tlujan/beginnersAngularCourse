@@ -1,15 +1,17 @@
 "use strict";
 
-(function(angular) {
+(function (angular) {
 	angular
 		.module("application")
 
 		.factory("navigationService", ["$route", function ($route) {
+			let applicationAngularRoutes = _fetchRoutesPairs();
+
 			return {
-				fetchRoutesPairs
+				applicationAngularRoutes
 			};
 
-			function fetchRoutesPairs() {
+			function _fetchRoutesPairs() {
 				let returnArrayOfUrlNamePairs = [];
 
 				angular.forEach($route.routes, function (r) {
@@ -26,7 +28,18 @@
 					returnArrayOfUrlNamePairs.push(friendlyRouteObject);
 				});
 
-				return returnArrayOfUrlNamePairs;
+				return _rearrangeItemToFirst("welcome", returnArrayOfUrlNamePairs);
+			}
+
+			function _rearrangeItemToFirst(itemName, array) {
+				array.forEach(function (elementInArray, indexOfElement) {
+					if (elementInArray.name && elementInArray.name.toLowerCase() === itemName.toLowerCase()) {
+						array.splice(indexOfElement, 1);
+						array.splice(0, 0, elementInArray);
+					}
+				});
+
+				return array;
 			}
 		}]);
-} (window.angular))
+}(window.angular))

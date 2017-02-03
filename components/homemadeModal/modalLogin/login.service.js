@@ -16,7 +16,7 @@
 				loggedInUser = {
 					username: usernameParam,
 					loggedInTime: Date.now()
-				}
+				};
 			}
 
 			function logout() {

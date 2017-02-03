@@ -5,18 +5,31 @@
 			// capturing controller scope here, used again in _getRandomColor
 			let vm = this;
 
-			modalService.showPrompt(
-				"This is our first test",
+			// creating callback function showAlertCallback below, I'm using bind to set "this" in the function to
+			// this controller so I can access bound properties like rollButtonText
 
-				{
-					text: "Show Alert",
-					callback: function() { alert("test"); }
-				},
+			// I get my homemade modal to show by invoking our service function, which you wrap in a function so you
+			// may bind to an event like ng-click
+			this.showPrompt = function() {
+				modalService.showPrompt(
+					"This is our first test",
 
-				{
-					text: "Be Quiet"
-				}
-			);
+					{
+						text     : "Show Alert",
+						callback : showAlertCallback.bind(this)
+					},
+
+					{
+						text: "Be Quiet"
+					}
+				);
+			}
+
+			// modal callback
+			function showAlertCallback() {
+				this.rollButtonText = "I changed because you pressed alert";
+				alert("Showing alert!");
+			}
 
 
 			// bindable publics
@@ -81,17 +94,17 @@
 				}
 			};
 
-			// hoisted, private functions
+			// hoisted, private function
 			function _getRandomColor() {
 				// look, LOOK at the difference between "this" and "vm"
 				// I had to capture the scope of the controller for this private function that is not really
 				// a part of the Angular controller... _getRandomColor is something we have access to and use
-				// internally
+				// privately
 				console.log("_getRandomColor this vs. vm", this, vm);
 
 				let randomColor = vm.possibleColors[Math.floor(Math.random() * vm.possibleColors.length)];
 
-				// now that randomColor is actually an object, we return only the hex property we need
+				// randomColor is actually an object, we return only the hex property we need
 				return randomColor.hex;
 			}
 		});

@@ -1,7 +1,6 @@
 <style type="text/css">
-	body {
-		height: 100vh;
-		width: 100vw;
+	.ui.container {
+		padding-top: 2.4em;
 	}
 
 	.ui.segments > .segment.paddingtop {
@@ -9,13 +8,12 @@
 	}
 </style>
 
-<button ng-click="vm.login(username, 'bob123')">login</button>
-<input type="text" ng-model="username"></input>
-
 <div class="ui container">
+	<button ng-click="vm.showLoginMessage()">LOGIN</button>
+
 	<div class="ui segments">
 		<div class="ui segment paddingtop">
-			<h1 class="ui header"><i class="grey google icon" aria-hidden="true"></i>  {{ vm.applicationLabel }} User: {{ vm.loggedInUser().username }}</h1>
+			<h1 class="ui header" ng-click="vm.showAuthorDetails()"><i class="grey google icon" aria-hidden="true"></i>{{ vm.applicationLabel }}</h1>
 		</div>
 		<navigation></navigation>
 	</div>

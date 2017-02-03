@@ -1,17 +1,13 @@
 (function (angular) {
 	let applicationGlobalSettings = {
-		title   : "WelcomeApp",
-		version : 0.99
-	};
-
-	let testSettings = {
-		test : "RAWR",
+		title   : "Firebase Angular Application",
+		version : 0.99,
+		author  : "Josh R. Dunlavy"
 	};
 
 	angular
 		.module("application", ["ngRoute"])
 		.constant("appSettings", applicationGlobalSettings)
-		.constant("testSettings", testSettings)
 		.config(
 			function ($locationProvider, $routeProvider) {
 				$locationProvider.html5Mode(true);
@@ -22,9 +18,9 @@
 						controller: "exercise1Controller",
 						controllerAs: "vm"
 					})
-					.when("/modal", {
-						templateUrl: "/partials/homemadeModal.partial.htm",
-						controller: "homemadeModalController",
+					.when("/exercise2", {
+						templateUrl: "/partials/exercise2.partial.htm",
+						controller: "exercise2Controller",
 						controllerAs: "vm"
 					})
 					.otherwise({

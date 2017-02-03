@@ -1,7 +1,7 @@
 (function (angular) {
 	angular
 		.module("application")
-		.factory("modalService", function() {
+		.factory("modalService", ["$q", "appSettings", function($q, appSettings) {
 			let modal = {
 				isLogin        : false,
 				isRegistration : false,
@@ -10,26 +10,38 @@
 
 			return {
 				modal,
+				showLogin,
 				showPrompt,
 				close
 			};
+
+			// set up our modal for login
+			function showLogin(callback) {
+				modal.message = "Login to " + appSettings.title;
+				modal.buttonObj1 = null;
+				modal.buttonObj2 = {
+					text     : "Login",
+					callback : $q.when(callback)
+				};
+				modal.isLogin = true;
+			}
 
 			// set up our modal for prompt
 			function showPrompt(message, buttonObj1, buttonObj2) {
 				// validation
 				let errorString = "You didn't use me right";
 
-				if (!message || !buttonObj1 || typeof buttonObj1 !== 'object')
+				if (buttonObj1 && typeof buttonObj1 !== 'object')
 					throw new Error(errorString);
 
 				if (buttonObj2 && typeof buttonObj2 !== 'object')
 					throw new Error(errorString);
 
 				// set our modal object properties
-				this.modal.message = message;
-				this.modal.buttonObj1 = buttonObj1;
-				this.modal.buttonObj2 = buttonObj2;
-				this.modal.isPrompt = true;
+				modal.message = message;
+				modal.buttonObj1 = buttonObj1;
+				modal.buttonObj2 = buttonObj2;
+				modal.isPrompt = true;
 			}
 
 			// set the modal object to a pristine state without reassignment
@@ -42,5 +54,5 @@
 				modal.isPrompt = false;
 				modal.message = null;
 			}
-		});
+		}]);
 } (window.angular))

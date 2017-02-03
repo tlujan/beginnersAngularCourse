@@ -1,0 +1,65 @@
+<link href="/partials/exercise.css" rel="stylesheet">
+
+<div class="ui container">
+	<navigation></navigation>
+
+	<div class="ui horizontal divider">
+		Exercise 2
+	</div>
+
+	<div>
+		<form name="form" novalidate>
+			<div class="ui form error">
+				<div class="fields">
+					<div class="field">
+						<label>First name</label>
+						<input type="text" placeholder="First Name">
+					</div>
+					<div class="field">
+						<label>Middle name</label>
+						<input type="text" placeholder="Middle Name">
+					</div>
+					<div class="field">
+						<label>Last name</label>
+						<input type="text" placeholder="Last Name">
+					</div>
+				</div>
+				<div class="fields">
+					<div class="six wide field">
+						<label>Email</label>
+						<input type="text" placeholder="Email">
+					</div>
+				</div>
+				<div class="fields">
+					<div class="field">
+						<label>Password</label>
+						<input type="password">
+					</div>
+					<div class="field">
+						<label>Confirm Password</label>
+						<input type="password">
+					</div>
+				</div>
+				<div class="ui error message">
+					<div class="header">Error:</div>
+					<p>Error message</p>
+				</div>
+			</div>
+
+			<div>&nbsp;</div>
+
+			<div class="spacedDiv">
+				Tell me if the form has been changed: <b>{{ }}</b>
+			</div>
+
+			<div class="spacedDiv">
+				Tell me if the form is valid: <b>{{ }}</b>
+				<br />
+				Validity in this instance requires all items be filled out as well as an email address entered.  Don't confuse
+				email address validation (i.e. does it actually belong to a user) with actually checking if the email belongs
+				to a user.  We're just observing the syntax of the field's input.
+			</div>
+		</form>
+	</div>
+
+</div>
