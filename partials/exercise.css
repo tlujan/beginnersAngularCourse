@@ -8,3 +8,11 @@
 input {
 	margin-left: 2em;
 }
+
+input.ng-valid {
+	background-color: lightgreen !important;
+}
+
+input.ng-invalid.ng-dirty {
+	background-color: lightpink !important;
+}

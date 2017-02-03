@@ -9,7 +9,8 @@
 			};
 
 			return {
-				modal,
+				modal,  // what our children bind to
+
 				showLogin,
 				showPrompt,
 				close
