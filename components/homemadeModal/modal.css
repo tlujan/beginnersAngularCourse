@@ -8,9 +8,28 @@
 	color: dimgray !important;
 	position: fixed !important;
 	z-index: 1;
-	background: rgba(10, 10, 10, .75) !important;
+	background: rgba(10, 10, 10, .6) !important;
 }
 
 .modalContainer .ui.center.aligned.grid {
 	height: 100%;
+}
+
+.ui.container.loginForm .form {
+	margin-left: 10em;
+	margin-right: 10em;
+	text-align: left;
+}
+
+.loginForm .two.fields {
+	padding-top: 2em;
+}
+
+.login.button {
+	margin-left: 2em;
+}
+
+.ui.toggle.checkbox input:focus:checked~.box,
+.ui.toggle.checkbox input:focus:checked~label {
+	color: white !important;
 }
