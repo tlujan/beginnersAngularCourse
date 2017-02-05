@@ -2,8 +2,11 @@
 	angular
 		.module("application")
 		.component("modalLogin", {
-			templateUrl: "components/homemadeModal/modalLogin/modalLogin.htm",
-			controller: "modalLoginController",
-			controllerAs: "vm"
+			require: {
+				modal: "^homemadeModal"
+			},
+			templateUrl  : "components/homemadeModal/modalLogin/modalLogin.htm",
+			controller   : "modalLoginController",
+			controllerAs : "vm"
 		});
 } (window.angular))

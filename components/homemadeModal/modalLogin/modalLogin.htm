@@ -18,7 +18,8 @@
 						<input type="checkbox" tabindex="0" ng-model="isRemembered">
 						<label>Remember Me?</label>
 					</div>
-					<button class="ui large login button" tabindex="0" ng-click="vm.login(username, password, isRemembered)" ng-disabled="loginform.$invalid">Login</button>
+					<button class="ui large login inverted basic button" tabindex="0" ng-click="vm.close();">Cancel</button>
+					<button class="ui large login button" tabindex="0" ng-click="vm.login(username, password, isRemembered); vm.close();" ng-disabled="loginform.$invalid">Login</button>
 				</div>
 			</div>
 		</div>
