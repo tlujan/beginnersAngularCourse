@@ -1,8 +1,7 @@
-(function(angular) {
+(function (angular) {
 	angular
 		.module("application")
-		.controller("modalLoginController", function() {
-			// jquery to wire up semantic ui toggle checkbox
-			$(".ui.checkbox").checkbox();
-		});
+		.controller("modalLoginController", ["loginService", function(loginService) {
+			this.login = loginService.login;
+		}]);
 }(window.angular));

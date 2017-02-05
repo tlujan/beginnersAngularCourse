@@ -10,8 +10,8 @@
 				fetchLoggedInUser
 			};
 
-			function login(usernameParam, passwordParam) {
-				console.log("Logging in " + usernameParam);
+			function login(usernameParam, passwordParam, isRememberedParam) {
+				console.log((isRememberedParam ? "Logging in and remembering " : "Logging in ") + usernameParam);
 
 				loggedInUser = {
 					username: usernameParam,
