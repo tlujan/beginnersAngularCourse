@@ -6,17 +6,35 @@
 
 			return {
 				login,
+				gitLogin,
 				logout,
 				fetchLoggedInUser
 			};
 
-			function login(usernameParam, passwordParam, isRememberedParam) {
-				console.log((isRememberedParam ? "Logging in and remembering " : "Logging in ") + usernameParam);
+			function login(usernameParam, passwordParam) {
+				return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam).then(function(result) {
+					// The signed-in user info
+					let user = result.user;
 
-				loggedInUser = {
-					username: usernameParam,
-					loggedInTime: Date.now()
-				};
+					loggedInUser = user;
+
+					console.log("Logged in user: ", loggedInUser.displayName);
+				});
+			}
+
+			function gitLogin() {
+				let githubAuthProvider = new firebase.auth.GithubAuthProvider();
+
+				return firebase.auth().signInWithPopup(githubAuthProvider).then(function(result) {
+					// This gives you a GitHub token to access GitHub API
+					let token = result.credential.accessToken;
+					// The signed-in user info
+					let user = result.user;
+
+					loggedInUser = user;
+
+					console.log("Logged in user: ", loggedInUser.displayName);
+				});
 			}
 
 			function logout() {
@@ -29,4 +47,4 @@
 				return loggedInUser;
 			}
 		});
-} (window.angular))
+}(window.angular))
