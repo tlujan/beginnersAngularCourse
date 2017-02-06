@@ -25,9 +25,8 @@
 	padding-top: 2em;
 }
 
-.login.button {
-	float: right;
-	margin-top: -1em;
+.ui.inverted.horizontal.divider {
+	margin-top: 3.6em;
 }
 
 .ui.toggle.checkbox input:checked~label,
