@@ -46,6 +46,22 @@
 	<!-- if you don't have dist, find semantic in node_modules or install gulp -->
 	<link href="semantic/dist/semantic.min.css" rel="stylesheet">
 	<script type="text/javascript" src="semantic/dist/semantic.min.js"></script>
+
+
+	<!-- firebase backend -->
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+
+	<script type="text/javascript">
+		let config = {
+			apiKey: "AIzaSyDhJPjpVUCmCMvw6DTaTlorDLnE1Enh4Wg",
+			authDomain: "confdeconflictor.firebaseapp.com",
+			databaseURL: "https://confdeconflictor.firebaseio.com",
+			storageBucket: "confdeconflictor.appspot.com",
+			messagingSenderId: "519140165558"
+		};
+
+		firebase.initializeApp(config);
+	</script>
 </head>
 
 <body ng-app="application">
