@@ -1,4 +1,4 @@
-(function (angular) {
+(function(angular) {
 	angular
 		.module("application")
 		.component("homemadeModal", {
@@ -7,4 +7,4 @@
 			controllerAs : "vm",
 			transclude   : true
 		});
-} (window.angular))
+}(window.angular))

@@ -1,7 +1,7 @@
 (function (angular) {
 	angular
 		.module("application")
-		.factory("loginService", function($timeout) {
+		.factory("loginService", ["$timeout", "roomsService", function($timeout, roomsService) {
 			// this variable will keep track of our logged in user
 			let loggedInUser = null;
 
@@ -20,6 +20,7 @@
 
 				$timeout(function() {
 					console.log("Logged in user set: ", loggedInUser);
+					roomsService.initRooms();
 					isLoading = false;
 				}, 2000);
 			});
@@ -57,5 +58,5 @@
 				loggedInUser = result.user;
 				console.log("Logged in user: ", loggedInUser.displayName);
 			}
-		});
+		}]);
 }(window.angular))

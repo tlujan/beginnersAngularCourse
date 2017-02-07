@@ -1,0 +1,11 @@
+<div class="ui segments rooms" ng-show="vm.fetchRooms() && vm.fetchRooms().length > 0">
+	<div class="ui segment">
+		<div class="ui horizontal large list">
+			<div ng-repeat="r in vm.fetchRooms() | orderBy: 'name'" class="item">
+				<div class="content">
+					<div class="header"><a ng-href="room/{{ r.id }}">{{ r.name }}</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
