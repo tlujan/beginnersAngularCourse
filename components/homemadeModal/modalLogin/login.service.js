@@ -1,50 +1,61 @@
 (function (angular) {
 	angular
 		.module("application")
-		.factory("loginService", function() {
+		.factory("loginService", function($timeout) {
+			// this variable will keep track of our logged in user
 			let loggedInUser = null;
+
+			// this variable will help show the loading asterisk in the top-right corner
+			let isLoading = true;
+
+			// actively watches Firebase authentication and propagates user results to our service variable
+			// bindings update because of dirty timeout trick which forces a digest cycle after two seconds
+			firebase.auth().onAuthStateChanged(function(user) {
+				isLoading = true;
+
+				if (user)
+					loggedInUser = user;
+				else
+					loggedInUser = null;
+
+				$timeout(function() {
+					console.log("Logged in user set: ", loggedInUser);
+					isLoading = false;
+				}, 2000);
+			});
 
 			return {
 				login,
 				gitLogin,
 				logout,
-				fetchLoggedInUser
+				fetchLoggedInUser,
+				fetchIsLoading
 			};
 
 			function login(usernameParam, passwordParam) {
-				return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam).then(function(result) {
-					// The signed-in user info
-					let user = result.user;
-
-					loggedInUser = user;
-
-					console.log("Logged in user: ", loggedInUser.displayName);
-				});
+				return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam).then(_success);
 			}
 
 			function gitLogin() {
-				let githubAuthProvider = new firebase.auth.GithubAuthProvider();
-
-				return firebase.auth().signInWithPopup(githubAuthProvider).then(function(result) {
-					// This gives you a GitHub token to access GitHub API
-					let token = result.credential.accessToken;
-					// The signed-in user info
-					let user = result.user;
-
-					loggedInUser = user;
-
-					console.log("Logged in user: ", loggedInUser.displayName);
-				});
+				return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider()).then(_success);
 			}
 
 			function logout() {
-				console.log("Logged out " + loggedInUser.username);
-
-				loggedInUser = null;
+				isLoading = true;
+				return firebase.auth().signOut();
 			}
 
 			function fetchLoggedInUser() {
 				return loggedInUser;
+			}
+
+			function fetchIsLoading() {
+				return isLoading;
+			}
+
+			function _success(result) {
+				loggedInUser = result.user;
+				console.log("Logged in user: ", loggedInUser.displayName);
 			}
 		});
 }(window.angular))

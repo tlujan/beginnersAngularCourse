@@ -1,3 +1,7 @@
-.ui.segments.navigation {
-	margin: .6em;
+.ui.container {
+	padding-top: 2.4em;
+}
+
+.ui.segments > .segment.paddingtop {
+	padding-top: 2em;
 }

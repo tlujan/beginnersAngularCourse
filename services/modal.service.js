@@ -4,7 +4,7 @@
 		.factory("modalService", ["$q", "appSettings", function($q, appSettings) {
 			let modal = {
 				isLogin        : false,
-				isRegistration : false,
+				isRegister     : false,
 				isPrompt       : false
 			};
 
@@ -12,12 +12,15 @@
 				modal,  // what our children bind to
 
 				showLogin,
+				showRegister,
 				showPrompt,
 				close
 			};
 
 			// set up our modal for login
 			function showLogin(callback) {
+				console.log("showLogin called");
+
 				modal.message = "Login to " + appSettings.title;
 				modal.buttonObj1 = null;
 				modal.buttonObj2 = {
@@ -25,6 +28,18 @@
 					callback : $q.when(callback)
 				};
 				modal.isLogin = true;
+			}
+
+			function showRegister(callback) {
+				console.log("showRegister called");
+
+				modal.message = "Register for " + appSettings.title;
+				modal.buttonObj1 = null;
+				modal.buttonObj2 = {
+					text     : "Register",
+					callback : $q.when(callback)
+				};
+				modal.isRegister = true;
 			}
 
 			// set up our modal for prompt
@@ -51,7 +66,7 @@
 				delete modal.buttonObj2;
 
 				modal.isLogin = false;
-				modal.isRegistration = false;
+				modal.isRegister = false;
 				modal.isPrompt = false;
 				modal.message = null;
 			}

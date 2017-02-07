@@ -1,20 +1,6 @@
-<style type="text/css">
-	.ui.container {
-		padding-top: 2.4em;
-	}
-
-	.ui.segments > .segment.paddingtop {
-		padding-top: 2em;
-	}
-</style>
-
 <div class="ui container">
-	<button ng-click="vm.showLoginMessage()">LOGIN</button>
-
-	<div class="ui segments">
-		<div class="ui segment paddingtop">
-			<h1 class="ui header" ng-click="vm.showAuthorDetails()"><i class="grey google icon" aria-hidden="true"></i>{{ vm.applicationLabel }}</h1>
-		</div>
+	<div>
+		<logged-in-user></logged-in-user>
 		<navigation></navigation>
 	</div>
 

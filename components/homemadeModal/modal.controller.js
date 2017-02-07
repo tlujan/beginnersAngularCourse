@@ -15,7 +15,7 @@
 			// refresh themselves; assigning to a literal will always be the same and won't
 			// re-evaluate
 			this.isShowingModal = function() {
-				return modalService.modal.isLogin || modalService.modal.isRegistration || modalService.modal.isPrompt;
+				return modalService.modal.isLogin || modalService.modal.isRegister || modalService.modal.isPrompt;
 			};
 		}]);
 } (window.angular))

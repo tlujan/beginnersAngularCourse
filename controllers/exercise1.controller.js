@@ -108,4 +108,4 @@
 				return randomColor.hex;
 			}
 		});
-} (window.angular))
+} (window.angular));
