@@ -1,3 +1,5 @@
+<link href="/partials/welcome.css" rel="stylesheet">
+
 <div class="ui container">
 	<div>
 		<logged-in-user></logged-in-user>
@@ -156,6 +158,68 @@
 				</div>
 			</div>
 
+		</div>
+	</div>
+
+	<h3 class="ui block inverted header">
+		WEEK 3
+	</h3>
+	<div class="ui inverted grey segment">
+		<div class="ui inverted very relaxed divided big list">
+			<div class="item">
+				<div class="content">
+					<div class="header">Components</div>
+					Components create custom HTML vocabulary and valuable encapsulation for your application and, like services, constants, and
+					controllers, these are attached to an Angular module.
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="content">
+					<div class="header">Component Steps</div>
+					<ol>
+						<li>Get reference to Angular module</li>
+						<li>Invoke component(param1, param2) on your module reference</li>
+						<li>Parameter 1:  name your component, camelCase, and remember this is how you'll use this component in HTML markup &lt;camel-case&gt;</li>
+						<li>Parameter 2:  not a function!... but a configuration object (see &quot;Comparison between Directive definition and Component
+							 definition&quot;) in docs for the properties Angular expects on this object</li>
+						<li>Ensure new JS files are added to your application via bundling or index.htm</li>
+						<li>Use your component somewhere and test it</li>
+					</ol>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<h3 class="ui block inverted header">
+		WEEK 4
+	</h3>
+	<div class="ui inverted grey segment">
+		<div class="ui inverted very relaxed divided big list">
+			<div class="item">
+				<div class="content">
+					<div class="header">Form Validation</div>
+					Use &quot;novalidate&quot; to disable built-in browser validation so Angular (and you) may drive validation
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="content">
+					<div class="header">Form Controllers</div>
+					<a href="https://docs.angularjs.org/api/ng/type/form.FormController">Form controller docs</a> - see how I use
+					Angular on our login form as well as exercise two.  Angular performs a lot of validation and CSS class
+					assignment to your form and child inputs which makes form validation and conditional styling a breeze!
+				</div>
+			</div>
+
+			<div class="item">
+				<div class="content">
+					<div class="header">ngModel</div>
+					ngModel is a built-in Angular directive for form controls that allow for two-way binding to/from your controller or
+					rootscope.  This is how you can directly bind changes in your HTML to a property in JavaScript and vice-versa.
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
