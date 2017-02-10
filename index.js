@@ -23,6 +23,10 @@
 						controller: "exercise2Controller",
 						controllerAs: "vm"
 					})
+					// this is going to break application routes (navigation) component, so let's debug this...
+					.when("room/:id", {
+						template: "<room></room>",
+					})
 					.otherwise({
 						templateUrl: "/partials/welcome.partial.htm",
 						controller: "welcomeController",

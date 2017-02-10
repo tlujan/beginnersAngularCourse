@@ -1,7 +1,7 @@
 (function (angular) {
 	angular
 		.module("application")
-		.controller("modalLoginController", ["loginService", function (loginService) {
+		.controller("modalLoginController", ["$scope", "loginService", function ($scope, loginService) {
 			this.$onInit = function() {
 				// error handler for promises below
 				this._processError = error => {
@@ -13,6 +13,8 @@
 				// success handler for promises below
 				this._processSuccess = () => {
 					this.closeModal();
+
+					$scope.apply();
 				};
 
 				// our actual login work, brought to us by the hard workin' loginService

@@ -50,21 +50,13 @@
 			function login(usernameParam, passwordParam) {
 				isServiceBusy = true;
 
-				// $q is Angular's promise, which fires a digest when completing
-				// https://docs.angularjs.org/api/ng/service/$q
-				return $q(function(resolve) {
-					return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam);
-				}).then(_success).then(resolve);
+				return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam).then(_success);
 			}
 
 			function gitLogin() {
 				isServiceBusy = true;
 
-				// $q is Angular's promise, which fires a digest when completing
-				// https://docs.angularjs.org/api/ng/service/$q
-				return $q(function(resolve) {
-					return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider());
-				}).then(_success).then(resolve);
+				return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider()).then(_success);
 			}
 
 			function logout() {
