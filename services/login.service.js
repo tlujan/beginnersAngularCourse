@@ -21,6 +21,7 @@
 							.then(function(results) {
 								console.log("Setting logged in user from Firebase users table after login");
 								loggedInUser = results.val();
+								console.log("User is", loggedInUser);
 							});
 					}
 				}
@@ -76,7 +77,7 @@
 			function _success(result) {
 				loggedInUser = result.user;
 
-				console.log("Logged in user: ", loggedInUser.displayName);
+				console.log("Logged in user: ", !loggedInUser.displayName ? "no display name" : loggedInUser.displayName);
 			}
 		}]);
 }(window.angular))
