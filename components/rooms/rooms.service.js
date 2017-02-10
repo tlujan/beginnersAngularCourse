@@ -19,21 +19,26 @@
 			}
 
 			function initRooms() {
+				_roomsFromFirebase = null;
+
+
 				// two ways to get the data... via rest endpoint using $http or Firebase wrapped in $q
-				return $http({ url: "https://confdeconflictor.firebaseio.com/rooms.json", method: "GET" })
-				// return $q.when(firebase.database().ref("/rooms/").once("value"))
+				// this has no token, so security has to be lax on the backend
+				//		return $http({
+				//			url    : "https://confdeconflictor.firebaseio.com/rooms.json",
+				//			method : "GET"
+				//		})
+				// this method, though, attaches authentication to the request
+				return $q.when(firebase.database().ref("/rooms/").once("value"))
 					.then(function(rooms) {
-						if(rooms.val)	// using Firebase
-							rooms = rooms.val();
-						else				// using $http
-							rooms = rooms.data;
+						if (rooms.val)
+							rooms = rooms.val();	// using Firebase above
+						else
+							rooms = rooms.data;	// using $http above
 
 						console.log(rooms.length + " rooms fetched");
 
 						_roomsFromFirebase = rooms;
-					})
-					.catch(function(error) {
-						console.log("Firebase room fetch error:", error);
 					});
 			}
 		}]);

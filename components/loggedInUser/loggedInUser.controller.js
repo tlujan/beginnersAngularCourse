@@ -7,7 +7,7 @@
 
 				// login service bindings
 				this.fetchLoggedInUser = loginService.fetchLoggedInUser;
-				this.fetchIsLoading = loginService.fetchIsLoading;
+				this.fetchIsLoginBusy = loginService.fetchIsLoginBusy;
 				this.logout = loginService.logout;
 
 				// modal service bindings

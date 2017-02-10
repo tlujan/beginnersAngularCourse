@@ -1,5 +1,46 @@
 <div class="ui container registerForm">
-	<form name="registerform" novalidate>
-
+	<form name="vm.registerform" novalidate>
+		<div class="ui inverted form"
+			  ng-class="{ error: vm.error.message ||
+			  				 (vm.registerform.email.$invalid && vm.registerform.email.$dirty) ||
+							 (vm.registerform.passwordconfirm.$invalid && vm.registerform.passwordconfirm.$dirty)
+							}">
+			<div class="field">
+				<label>Username (Email): </label>
+				<input name="email" type="email" tabindex="0" required ng-model="vm.registerform.controls.email" ng-model-options="{ updateOn: 'blur', allowInvalid: true }">
+			</div>
+			<div class="field">
+				<label>Display Name: </label>
+				<input name="displayName" type="text" tabindex="0" required ng-model="vm.registerform.controls.displayName">
+			</div>
+			<div class="field">
+				<label>Photo URL: </label>
+				<input name="photoURL" type="url" tabindex="0" ng-model="vm.registerform.controls.photoURL">
+			</div>
+			<div class="two fields">
+				<div class="field">
+					<label>Password: </label>
+					<input name="password" type="password" tabindex="0" required ng-model="password">
+				</div>
+				<div class="field">
+					<label>Confirm Password: </label>
+					<input name="passwordconfirm" type="password" tabindex="0" required ng-pattern="password" ng-model="passwordconfirm" ng-model-options="{ updateOn: 'blur' }">
+				</div>
+			</div>
+			<div class="ui error message">
+				<div class="header">{{ vm.error.code || 'Invalid input' }}</div>
+				<p>{{ vm.error.message || 'Your form is not filled out properly' }}</p>
+			</div>
+		</div>
 	</form>
+	<div class="ui two column grid">
+		<div class="row">
+			<div class="right aligned column">
+				<button class="ui large inverted basic button" tabindex="0" ng-click="vm.closeModal();">Cancel</button>
+			</div>
+			<div class="left aligned column">
+				<button class="ui large button" tabindex="0" ng-click="vm.register(vm.registerform.controls, password);" ng-disabled="vm.registerform.$invalid">Register</button>
+			</div>
+		</div>
+	</div>
 </div>

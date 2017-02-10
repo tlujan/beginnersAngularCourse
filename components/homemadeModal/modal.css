@@ -21,6 +21,12 @@
 	text-align: left;
 }
 
+.ui.container.registerForm .form {
+	margin-left: 16em;
+	margin-right: 16em;
+	text-align: left;
+}
+
 .loginForm .two.fields {
 	padding-top: 2em;
 }
@@ -32,4 +38,8 @@
 .ui.toggle.checkbox input:checked~label,
 .ui.toggle.checkbox input:focus:checked~label {
 	color:palegreen !important;
+}
+
+input.ng-invalid.ng-dirty {
+	background-color: lightpink !important;
 }

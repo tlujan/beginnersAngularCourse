@@ -19,8 +19,6 @@
 
 			// set up our modal for login
 			function showLogin(callback) {
-				console.log("showLogin called");
-
 				modal.message = "Login to " + appSettings.title;
 				modal.buttonObj1 = null;
 				modal.buttonObj2 = {
@@ -31,8 +29,6 @@
 			}
 
 			function showRegister(callback) {
-				console.log("showRegister called");
-
 				modal.message = "Register for " + appSettings.title;
 				modal.buttonObj1 = null;
 				modal.buttonObj2 = {

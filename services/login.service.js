@@ -1,27 +1,41 @@
-(function (angular) {
+(function(angular) {
 	angular
 		.module("application")
-		.factory("loginService", ["$timeout", "roomsService", function($timeout, roomsService) {
+		.factory("loginService", ["$q", "$timeout", "roomsService", function($q, $timeout, roomsService) {
 			// this variable will keep track of our logged in user
 			let loggedInUser = null;
 
 			// this variable will help show the loading asterisk in the top-right corner
-			let isLoading = true;
+			let isServiceBusy = true;
 
 			// actively watches Firebase authentication and propagates user results to our service variable
 			// bindings update because of dirty timeout trick which forces a digest cycle after two seconds
 			firebase.auth().onAuthStateChanged(function(user) {
-				isLoading = true;
+				isServiceBusy = true;
 
-				if (user)
+				if (user) {
 					loggedInUser = user;
-				else
-					loggedInUser = null;
 
+					if (loggedInUser && !loggedInUser.displayName) {
+						$q.when(firebase.database().ref("/users/" + loggedInUser.email.replace(".", "_")).once("value"))
+							.then(function(results) {
+								console.log("Setting logged in user from Firebase users table after login");
+								loggedInUser = results.val();
+							});
+					}
+				}
+				else {
+					// user is not logged in
+					loggedInUser = null;
+				}
+
+				// use Angular's timeout so we can see the loading in our top-right login section
+				// Angular's timeout automatically triggers a digest so you bindings update when it
+				// completes
 				$timeout(function() {
-					console.log("Logged in user set: ", loggedInUser);
 					roomsService.initRooms();
-					isLoading = false;
+					isServiceBusy = false;
+					console.log("Logged in user set: ", loggedInUser);
 				}, 2000);
 			});
 
@@ -30,19 +44,32 @@
 				gitLogin,
 				logout,
 				fetchLoggedInUser,
-				fetchIsLoading
+				fetchIsLoginBusy
 			};
 
 			function login(usernameParam, passwordParam) {
-				return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam).then(_success);
+				isServiceBusy = true;
+
+				// $q is Angular's promise, which fires a digest when completing
+				// https://docs.angularjs.org/api/ng/service/$q
+				return $q(function(resolve) {
+					return firebase.auth().signInWithEmailAndPassword(usernameParam, passwordParam);
+				}).then(_success).then(resolve);
 			}
 
 			function gitLogin() {
-				return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider()).then(_success);
+				isServiceBusy = true;
+
+				// $q is Angular's promise, which fires a digest when completing
+				// https://docs.angularjs.org/api/ng/service/$q
+				return $q(function(resolve) {
+					return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider());
+				}).then(_success).then(resolve);
 			}
 
 			function logout() {
-				isLoading = true;
+				isServiceBusy = true;
+
 				return firebase.auth().signOut();
 			}
 
@@ -50,12 +77,13 @@
 				return loggedInUser;
 			}
 
-			function fetchIsLoading() {
-				return isLoading;
+			function fetchIsLoginBusy() {
+				return isServiceBusy;
 			}
 
 			function _success(result) {
 				loggedInUser = result.user;
+
 				console.log("Logged in user: ", loggedInUser.displayName);
 			}
 		}]);

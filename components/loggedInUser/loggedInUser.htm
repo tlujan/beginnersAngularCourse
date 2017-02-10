@@ -2,16 +2,16 @@
 
 <div class="ui segment paddingtop">
 	<!-- spinny loading thing which shows if Firebase is syncing our login status -->
-	<div class="loggedInUser" ng-if="vm.fetchIsLoading()"><i class="asterisk gray loading icon"></i></div>
+	<div class="loggedInUser" ng-if="vm.fetchIsLoginBusy()"><i class="asterisk gray loading icon"></i></div>
 
 	<!-- NOT logged in presentation -->
-	<div class="loggedInUser" ng-if="!vm.fetchLoggedInUser() && !vm.fetchIsLoading()">
+	<div class="loggedInUser" ng-if="!vm.fetchLoggedInUser() && !vm.fetchIsLoginBusy()">
 		<button ng-click="vm.showLogin()">LOGIN</button>
 		<button ng-click="vm.showRegister()">REGISTER</button>
 	</div>
 
 	<!-- logged in presentation -->
-	<div class="loggedInUser" ng-if="vm.fetchLoggedInUser() && !vm.fetchIsLoading()">
+	<div class="loggedInUser" ng-if="vm.fetchLoggedInUser() && !vm.fetchIsLoginBusy()">
 		<img class="ui avatar image" ng-src="{{ vm.fetchLoggedInUser().photoURL }}">
 		<span>{{ vm.fetchLoggedInUser().displayName | uppercase }} :: <a href="" ng-click="vm.logoutPrompt()">LOGOUT</a></span>
 		<!-- for debugging and logged in object inspection -->
