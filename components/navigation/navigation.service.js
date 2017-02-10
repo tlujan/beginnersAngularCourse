@@ -16,7 +16,7 @@
 
 				angular.forEach($route.routes, function (r) {
 					// we don't want redirect routes
-					if (!!r.redirectTo) {
+					if (!!r.redirectTo || !r.controller) {
 						return;
 					}
 
