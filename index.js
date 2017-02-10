@@ -24,7 +24,7 @@
 						controllerAs: "vm"
 					})
 					// this is going to break application routes (navigation) component, so let's debug this...
-					.when("room/:id", {
+					.when("/room/:id", {
 						template: "<room></room>",
 					})
 					.otherwise({
