@@ -6,15 +6,15 @@
 				// error handler for promises below
 				this._processError = error => {
 					this.error = error;
-
-					console.log("Error logging in", error);
+					$scope.$apply();	// we use $scope.apply to trigger Angular binding updates since service doesn't use $q
+											// to perform the same action
 				};
 
 				// success handler for promises below
 				this._processSuccess = () => {
 					this.closeModal();
-
-					$scope.apply();
+					$scope.$apply();	// we use $scope.apply to trigger Angular binding updates since service doesn't use $q
+											// to perform the same action
 				};
 
 				// our actual login work, brought to us by the hard workin' loginService
